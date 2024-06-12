@@ -1,0 +1,36 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  name: {{ name }}
+  namespace: eessibasis
+  labels:
+    team: eessibasis
+spec:
+  image: {{ image }}
+  schedule: "{{ schedule }}"
+  timeZone: Europe/Oslo
+  ttlSecondsAfterFinished: 340
+  backoffLimit: 2
+  successfulJobsHistoryLimit: 10
+  failedJobsHistoryLimit: 10
+  resources:
+    limits:
+      cpu: "1"
+      memory: 512Mi
+    requests:
+      cpu: 800m
+      memory: 512Mi
+  accessPolicy:
+    outbound:
+      rules:
+        - application: {{ application.eux-slett-usendte-rinasaker.name }}
+  azure:
+    application:
+      enabled: true
+  env:
+    - name: slettprosess
+      value: {{ slettprosess }}
+    - name: CLIENT_EUXSLETTUSENDTERINASAKER_ENDPOINT
+      value: {{ application.eux-slett-usendte-rinasaker.endpoint }}
+    - name: CLIENT_EUXSLETTUSENDTERINASAKER_SCOPE
+      value: {{ application.eux-slett-usendte-rinasaker.scope }}

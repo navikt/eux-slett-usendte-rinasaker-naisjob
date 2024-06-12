@@ -1,0 +1,11 @@
+name: eux-slett-usendte-rinasaker-slett-naisjob-q2
+schedule: "0 1 * * *"
+
+slettprosess: slett
+
+application:
+  eux-slett-usendte-rinasaker:
+    name: eux-slett-usendte-rinasaker-q2
+    namespace: eessibasis
+    endpoint: http://eux-slett-usendte-rinasaker-q2
+    scope: api://dev-gcp.eessibasis.eux-slett-usendte-rinasaker-q2/.default
