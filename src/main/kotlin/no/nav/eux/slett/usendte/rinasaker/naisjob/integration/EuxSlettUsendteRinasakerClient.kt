@@ -6,7 +6,6 @@ import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
-import org.springframework.web.client.RestTemplate
 
 @Component
 class EuxSlettUsendteRinasakerClient(
