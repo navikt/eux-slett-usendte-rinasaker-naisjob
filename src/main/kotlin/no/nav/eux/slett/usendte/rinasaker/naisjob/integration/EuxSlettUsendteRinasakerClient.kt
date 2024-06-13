@@ -5,24 +5,25 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestClient
 import org.springframework.web.client.RestTemplate
 
 @Component
 class EuxSlettUsendteRinasakerClient(
-    @Value("\${arkivarprosess}")
-    val arkivarprosess: String,
+    @Value("\${sletteprosess}")
+    val sletteprosess: String,
     @Value("\${endpoint.euxslettusendterinasaker}")
     val euxJournalarkivarUrl: String,
-    val euxJournalarkivarRestTemplate: RestTemplate
 ) {
 
     val log = logger {}
 
     fun execute() {
-        log.info { "execute: $arkivarprosess" }
-        euxJournalarkivarRestTemplate
+        log.info { "execute: $sletteprosess" }
+        RestClient
+            .create()
             .post()
-            .uri("${euxJournalarkivarUrl}/api/v1/arkivarprosess/$arkivarprosess/execute")
+            .uri("${euxJournalarkivarUrl}/api/v1/sletteprosess/$sletteprosess/execute")
             .contentType(APPLICATION_JSON)
             .accept(MediaType.ALL)
             .retrieve()

@@ -1,7 +1,7 @@
 name: eux-slett-usendte-rinasaker-slett-naisjob-q2
 schedule: "0 1 * * *"
 
-slettprosess: slett
+sletteprosess: slett
 
 application:
   eux-slett-usendte-rinasaker:

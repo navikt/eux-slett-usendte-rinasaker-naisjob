@@ -28,8 +28,8 @@ spec:
     application:
       enabled: true
   env:
-    - name: slettprosess
-      value: {{ slettprosess }}
+    - name: sletteprosess
+      value: {{ sletteprosess }}
     - name: CLIENT_EUXSLETTUSENDTERINASAKER_ENDPOINT
       value: {{ application.eux-slett-usendte-rinasaker.endpoint }}
     - name: CLIENT_EUXSLETTUSENDTERINASAKER_SCOPE
