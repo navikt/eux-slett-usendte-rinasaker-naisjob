@@ -11,7 +11,7 @@ import org.springframework.web.client.RestClient
 class EuxSlettUsendteRinasakerClient(
     @Value("\${sletteprosess}")
     val sletteprosess: String,
-    @Value("\${endpoint.euxslettusendterinasaker}")
+    @Value("\${endpoint.eux-slett-usendte-rinasaker}")
     val euxJournalarkivarUrl: String,
 ) {
 
