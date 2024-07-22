@@ -1,5 +1,5 @@
 name: eux-slett-usendte-rinasaker-til-sletting-naisjob-q2
-schedule: "0 2 * * *"
+schedule: "* * * * *"
 
 sletteprosess: til-sletting
 
