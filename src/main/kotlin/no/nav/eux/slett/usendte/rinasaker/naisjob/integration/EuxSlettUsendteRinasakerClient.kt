@@ -12,17 +12,19 @@ class EuxSlettUsendteRinasakerClient(
     @Value("\${sletteprosess}")
     val sletteprosess: String,
     @Value("\${endpoint.eux-slett-usendte-rinasaker}")
-    val euxJournalarkivarUrl: String,
+    val euxSlettUsendteRinasakerUrl: String,
 ) {
 
     val log = logger {}
 
     fun execute() {
         log.info { "execute: $sletteprosess" }
+        val uri = "${euxSlettUsendteRinasakerUrl}/api/v1/sletteprosess/$sletteprosess/execute"
+        log.info { "endpoint: $uri" }
         RestClient
             .create()
             .post()
-            .uri("${euxJournalarkivarUrl}/api/v1/sletteprosess/$sletteprosess/execute")
+            .uri(uri)
             .contentType(APPLICATION_JSON)
             .accept(MediaType.ALL)
             .retrieve()
