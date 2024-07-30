@@ -2,11 +2,10 @@ package no.nav.eux.slett.usendte.rinasaker.naisjob.integration
 
 import io.github.oshai.kotlinlogging.KotlinLogging.logger
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpStatus.GATEWAY_TIMEOUT
 import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
-import org.springframework.web.client.HttpServerErrorException
+import org.springframework.web.client.ResourceAccessException
 import org.springframework.web.client.RestClient
 
 @Component
@@ -31,11 +30,8 @@ class EuxSlettUsendteRinasakerClient(
                 .accept(MediaType.ALL)
                 .retrieve()
                 .toBodilessEntity()
-        } catch (e: HttpServerErrorException) {
-            when (e.statusCode) {
-                GATEWAY_TIMEOUT -> log.info { "Timeout mot server, venter ikke på svar" }
-                else -> throw e
-            }
+        } catch (e: ResourceAccessException) {
+            log.warn(e) { "ResourceAccessException: forventer at kjøring fortsetter" }
         }
 
     }

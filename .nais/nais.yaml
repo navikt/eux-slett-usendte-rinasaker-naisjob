@@ -10,7 +10,7 @@ spec:
   schedule: "{{ schedule }}"
   timeZone: Europe/Oslo
   ttlSecondsAfterFinished: 340
-  backoffLimit: 2
+  backoffLimit: 0
   successfulJobsHistoryLimit: 10
   failedJobsHistoryLimit: 10
   resources:
