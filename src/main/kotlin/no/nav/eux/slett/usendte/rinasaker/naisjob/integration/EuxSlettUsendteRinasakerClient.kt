@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
-import org.springframework.web.client.ResourceAccessException
 import org.springframework.web.client.RestClient
 
 @Component
@@ -30,8 +29,8 @@ class EuxSlettUsendteRinasakerClient(
                 .accept(MediaType.ALL)
                 .retrieve()
                 .toBodilessEntity()
-        } catch (e: ResourceAccessException) {
-            log.warn(e) { "ResourceAccessException: forventer at kjøring fortsetter" }
+        } catch (e: Exception) {
+            log.warn(e) { "Naisjob avsluttet ikke synkront, antar fortsettelse asynkront, restart manuelt" }
         }
 
     }
