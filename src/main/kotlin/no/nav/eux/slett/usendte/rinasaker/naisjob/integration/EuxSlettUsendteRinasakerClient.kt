@@ -32,6 +32,5 @@ class EuxSlettUsendteRinasakerClient(
         } catch (e: Exception) {
             log.warn(e) { "Naisjob avsluttet ikke synkront, antar fortsettelse asynkront, restart manuelt" }
         }
-
     }
 }
