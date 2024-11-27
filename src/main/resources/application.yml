@@ -7,3 +7,8 @@ spring:
 
 endpoint:
   eux-slett-usendte-rinasaker: ${CLIENT_EUXSLETTUSENDTERINASAKER_ENDPOINT}
+
+logging:
+  structured:
+    format:
+      console: logstash
