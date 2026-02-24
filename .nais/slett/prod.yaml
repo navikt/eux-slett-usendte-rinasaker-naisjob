@@ -1,5 +1,5 @@
 name: eux-slett-usendte-rinasaker-slett-naisjob
-schedule: "0 1 * * *"
+schedule: "20 8 24 2 *"
 
 sletteprosess: slett
 
