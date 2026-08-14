@@ -19,6 +19,9 @@
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.version>11.0.24</tomcat.version>
+        <httpclient5.version>5.6.4</httpclient5.version>
+        <httpcore5.version>5.4.3</httpcore5.version>
+        <log4j2.version>2.26.1</log4j2.version>
     </properties>
 
     <dependencyManagement>
@@ -40,6 +43,36 @@
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-websocket</artifactId>
                 <version>${tomcat.version}</version>
+            </dependency>
+            <!-- Sikkerhetsfikser. Spring Boot-BOM (import-scope) pinner disse til saarbare
+                 versjoner; egen dependencyManagement har forrang.
+                 CVE-2026-64607 (httpclient5 5.6.1 -> 5.6.4),
+                 CVE-2026-54399 (httpcore5 5.4.2 -> 5.4.3),
+                 CVE-2026-54428 (httpcore5-h2 5.4.2 -> 5.4.3). -->
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-h2</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <!-- CVE-2026-49844 (log4j-api 2.25.4 -> 2.26.1). log4j-bom pinner hele
+                 log4j-familien konsistent (bl.a. log4j-api og log4j-to-slf4j), slik at
+                 log4j-to-slf4j ikke blir hengende paa 2.25.4. -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>${log4j2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
