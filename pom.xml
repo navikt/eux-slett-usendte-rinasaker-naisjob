@@ -7,7 +7,7 @@
     <parent>
         <groupId>no.nav.eux</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>2.0.15</version>
+        <version>2.0.22</version>
     </parent>
 
     <groupId>no.nav.eux.slett.usendte.rinasaker.naisjob</groupId>
@@ -18,7 +18,31 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tomcat.version>11.0.24</tomcat.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot-BOM importeres med import-scope og gir Tomcat 11.0.22.
+                 En tomcat.version-property alene slaar ikke gjennom; modulens egen
+                 dependencyManagement har forrang og pinner alle tre artefaktene til 11.0.24. -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <scm>
         <connection>scm:git:https://github.com/navikt/eux-slett-usendte-rinasaker-naisjob.git</connection>
