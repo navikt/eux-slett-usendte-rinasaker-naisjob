@@ -7,7 +7,7 @@
     <parent>
         <groupId>no.nav.eux</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>2.0.23</version>
+        <version>3.0.1</version>
     </parent>
 
     <groupId>no.nav.eux.slett.usendte.rinasaker.naisjob</groupId>
@@ -15,54 +15,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <httpclient5.version>5.6.4</httpclient5.version>
-        <httpcore5.version>5.4.3</httpcore5.version>
         <log4j2.version>2.26.1</log4j2.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot-BOM importeres med import-scope og gir Tomcat 11.0.22.
-                 En tomcat.version-property alene slaar ikke gjennom; modulens egen
-                 dependencyManagement har forrang og pinner alle tre artefaktene til 11.0.24. -->
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-core</artifactId>
-                <version>${tomcat.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-el</artifactId>
-                <version>${tomcat.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-websocket</artifactId>
-                <version>${tomcat.version}</version>
-            </dependency>
-            <!-- Sikkerhetsfikser. Spring Boot-BOM (import-scope) pinner disse til saarbare
-                 versjoner; egen dependencyManagement har forrang.
-                 CVE-2026-64607 (httpclient5 5.6.1 -> 5.6.4),
-                 CVE-2026-54399 (httpcore5 5.4.2 -> 5.4.3),
-                 CVE-2026-54428 (httpcore5-h2 5.4.2 -> 5.4.3). -->
-            <dependency>
-                <groupId>org.apache.httpcomponents.client5</groupId>
-                <artifactId>httpclient5</artifactId>
-                <version>${httpclient5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.core5</groupId>
-                <artifactId>httpcore5</artifactId>
-                <version>${httpcore5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.core5</groupId>
-                <artifactId>httpcore5-h2</artifactId>
-                <version>${httpcore5.version}</version>
-            </dependency>
             <!-- CVE-2026-49844 (log4j-api 2.25.4 -> 2.26.1). log4j-bom pinner hele
                  log4j-familien konsistent (bl.a. log4j-api og log4j-to-slf4j), slik at
                  log4j-to-slf4j ikke blir hengende paa 2.25.4. -->
@@ -89,7 +46,6 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -100,7 +56,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>21</jvmTarget>
                     <compilerPlugins>
                         <plugin>jpa</plugin>
                         <plugin>spring</plugin>
@@ -125,7 +80,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
                 <executions>
                     <execution>
                         <goals>
